@@ -10,15 +10,15 @@
 
 import Foundation
 
-protocol JSONServiceResponse: WebServiceResponse {
+public protocol JSONServiceResponse: WebServiceResponse {
   init(jsonObject:Decodable)
 }
 
-protocol JSONServiceRequest: WebServiceRequest where Task: URLSessionDataTask, Response: JSONServiceResponse {
+public protocol JSONServiceRequest: WebServiceRequest where Task: URLSessionDataTask, Response: JSONServiceResponse {
   func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) -> WebServiceResult<Response>
 }
 
-extension JSONServiceRequest {
+public extension JSONServiceRequest {
   var accept: MIMEType? { return .json }
   
   @discardableResult

@@ -85,8 +85,7 @@
 		D9899058201878C700DAE4CC /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D9899070201879AC00DAE4CC /* JSONServiceRequest.swift */,
-				D9899071201879AC00DAE4CC /* WebServiceRequest.swift */,
+				D994940B20188FAD00BD937D /* Protocols */,
 				D9899059201878C700DAE4CC /* Square1Network.h */,
 				D989905A201878C700DAE4CC /* Info.plist */,
 			);
@@ -129,6 +128,15 @@
 				D989907F20187EC100DAE4CC /* Post.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D994940B20188FAD00BD937D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D9899070201879AC00DAE4CC /* JSONServiceRequest.swift */,
+				D9899071201879AC00DAE4CC /* WebServiceRequest.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,7 +447,7 @@
 				DEVELOPMENT_TEAM = 2X2SE3LG2B;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.square1.Square1NetworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.square1.ios.network.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -456,7 +464,7 @@
 				DEVELOPMENT_TEAM = 2X2SE3LG2B;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.square1.Square1NetworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.square1.ios.network.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

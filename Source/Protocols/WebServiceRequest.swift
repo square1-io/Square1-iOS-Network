@@ -10,27 +10,27 @@
 
 import Foundation
 
-enum HTTPMethod : String {
+public enum HTTPMethod : String {
   case GET
   case POST
   case PUT
   case DELETE
 }
 
-enum MIMEType : String {
+public enum MIMEType : String {
   case json = "application/json"
 }
 
-typealias HeaderItem = URLQueryItem
+public typealias HeaderItem = URLQueryItem
 
-enum WebServiceResult<T> {
+public enum WebServiceResult<T> {
   case success(T)
   case successNoData
   case failure(NSError)
 }
 
 // MARK: - WebResource
-protocol WebServiceRequest {
+public protocol WebServiceRequest {
   associatedtype Task: URLSessionTask
   associatedtype Response: WebServiceResponse
   
@@ -48,7 +48,7 @@ protocol WebServiceRequest {
 }
 
 // MARK: Default values
-extension WebServiceRequest {
+public extension WebServiceRequest {
   var method: HTTPMethod { return .GET }
   var path: [String] { return [String]() }
   var queryParams: [URLQueryItem] { return [URLQueryItem]() }
@@ -59,7 +59,7 @@ extension WebServiceRequest {
 }
 
 // MARK: Request
-extension WebServiceRequest {
+public extension WebServiceRequest {
   
   var requestDescription: String { return String(describing: type(of: self)) }
   
@@ -106,4 +106,4 @@ extension WebServiceRequest {
 }
 
 // MARK: Web Service Response
-protocol WebServiceResponse {}
+public protocol WebServiceResponse {}
