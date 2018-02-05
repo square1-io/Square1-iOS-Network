@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9239E95202880C600401215 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9239E94202880C600401215 /* Reachability.swift */; };
 		D9899060201878C700DAE4CC /* Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9899056201878C700DAE4CC /* Square1Network.framework */; };
 		D9899067201878C700DAE4CC /* Square1Network.h in Headers */ = {isa = PBXBuildFile; fileRef = D9899059201878C700DAE4CC /* Square1Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D9899072201879AC00DAE4CC /* JSONServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9899070201879AC00DAE4CC /* JSONServiceRequest.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D9239E94202880C600401215 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D9899056201878C700DAE4CC /* Square1Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Square1Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9899059201878C700DAE4CC /* Square1Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Square1Network.h; sourceTree = "<group>"; };
 		D989905A201878C700DAE4CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D9239E93202880B200401215 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D9239E94202880C600401215 /* Reachability.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		D989904C201878C600DAE4CC = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +95,7 @@
 		D9899058201878C700DAE4CC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D9239E93202880B200401215 /* Helpers */,
 				D994940B20188FAD00BD937D /* Protocols */,
 				D9899059201878C700DAE4CC /* Square1Network.h */,
 				D989905A201878C700DAE4CC /* Info.plist */,
@@ -253,6 +264,7 @@
 			files = (
 				D9899073201879AC00DAE4CC /* WebServiceRequest.swift in Sources */,
 				D9899072201879AC00DAE4CC /* JSONServiceRequest.swift in Sources */,
+				D9239E95202880C600401215 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
