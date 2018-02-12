@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		453718C720281C1B9BBBEB29 /* Pods_Square1NetworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABB85FEFCAD56006F8E7529 /* Pods_Square1NetworkTests.framework */; };
+		D1691BB8DB6A7317AC6FB8FF /* Pods_Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028F866153AEF087751863B /* Pods_Square1Network.framework */; };
 		D9239E95202880C600401215 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9239E94202880C600401215 /* Reachability.swift */; };
+		D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */; };
 		D9899060201878C700DAE4CC /* Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9899056201878C700DAE4CC /* Square1Network.framework */; };
 		D9899067201878C700DAE4CC /* Square1Network.h in Headers */ = {isa = PBXBuildFile; fileRef = D9899059201878C700DAE4CC /* Square1Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D9899072201879AC00DAE4CC /* JSONServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9899070201879AC00DAE4CC /* JSONServiceRequest.swift */; };
@@ -31,7 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6ABB85FEFCAD56006F8E7529 /* Pods_Square1NetworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Square1NetworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8028F866153AEF087751863B /* Pods_Square1Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Square1Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B5B5C0E6B6950E4A3875D03 /* Pods-Square1Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.release.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.release.xcconfig"; sourceTree = "<group>"; };
+		8D5D431BC20FE6174215DE93 /* Pods-Square1NetworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1NetworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		8FE33344493940DEB81DA24E /* Pods-Square1Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.debug.xcconfig"; sourceTree = "<group>"; };
 		D9239E94202880C600401215 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Square1.swift"; sourceTree = "<group>"; };
 		D9899056201878C700DAE4CC /* Square1Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Square1Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9899059201878C700DAE4CC /* Square1Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Square1Network.h; sourceTree = "<group>"; };
 		D989905A201878C700DAE4CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +54,7 @@
 		D989907F20187EC100DAE4CC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D989908320187FEE00DAE4CC /* MultiplePostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplePostsResponse.swift; sourceTree = "<group>"; };
 		D9899085201880E300DAE4CC /* MultiplePostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplePostsRequest.swift; sourceTree = "<group>"; };
+		D9DC379E4CFD8507141DCCE6 /* Pods-Square1NetworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1NetworkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1691BB8DB6A7317AC6FB8FF /* Pods_Square1Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +71,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9899060201878C700DAE4CC /* Square1Network.framework in Frameworks */,
+				453718C720281C1B9BBBEB29 /* Pods_Square1NetworkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1954C6D42E12809762B03E3D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8FE33344493940DEB81DA24E /* Pods-Square1Network.debug.xcconfig */,
+				8B5B5C0E6B6950E4A3875D03 /* Pods-Square1Network.release.xcconfig */,
+				D9DC379E4CFD8507141DCCE6 /* Pods-Square1NetworkTests.debug.xcconfig */,
+				8D5D431BC20FE6174215DE93 /* Pods-Square1NetworkTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3BEE6FFC1241713559BBDA0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8028F866153AEF087751863B /* Pods_Square1Network.framework */,
+				6ABB85FEFCAD56006F8E7529 /* Pods_Square1NetworkTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D9239E93202880B200401215 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,12 +106,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D956F8B72031BF50007015A9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D989904C201878C600DAE4CC = {
 			isa = PBXGroup;
 			children = (
 				D9899058201878C700DAE4CC /* Source */,
 				D9899063201878C700DAE4CC /* Tests */,
 				D9899057201878C700DAE4CC /* Products */,
+				1954C6D42E12809762B03E3D /* Pods */,
+				3BEE6FFC1241713559BBDA0C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +137,7 @@
 		D9899058201878C700DAE4CC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D956F8B72031BF50007015A9 /* Extensions */,
 				D9239E93202880B200401215 /* Helpers */,
 				D994940B20188FAD00BD937D /* Protocols */,
 				D9899059201878C700DAE4CC /* Square1Network.h */,
@@ -168,10 +211,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D989906A201878C700DAE4CC /* Build configuration list for PBXNativeTarget "Square1Network" */;
 			buildPhases = (
+				D57791E997D70DA544DCEBF7 /* [CP] Check Pods Manifest.lock */,
 				D9899051201878C700DAE4CC /* Sources */,
 				D9899052201878C700DAE4CC /* Frameworks */,
 				D9899053201878C700DAE4CC /* Headers */,
 				D9899054201878C700DAE4CC /* Resources */,
+				E2301099710EA79EBA5CA222 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D989906D201878C700DAE4CC /* Build configuration list for PBXNativeTarget "Square1NetworkTests" */;
 			buildPhases = (
+				CA940CA7C60C480DFB73B4D1 /* [CP] Check Pods Manifest.lock */,
 				D989905B201878C700DAE4CC /* Sources */,
 				D989905C201878C700DAE4CC /* Frameworks */,
 				D989905D201878C700DAE4CC /* Resources */,
+				24422A5A67EF59D067591A45 /* [CP] Embed Pods Frameworks */,
+				849D0BD3EF56037496988538 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,12 +305,100 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24422A5A67EF59D067591A45 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		849D0BD3EF56037496988538 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA940CA7C60C480DFB73B4D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Square1NetworkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D57791E997D70DA544DCEBF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Square1Network-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2301099710EA79EBA5CA222 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D9899051201878C700DAE4CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D9899073201879AC00DAE4CC /* WebServiceRequest.swift in Sources */,
+				D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */,
 				D9899072201879AC00DAE4CC /* JSONServiceRequest.swift in Sources */,
 				D9239E95202880C600401215 /* Reachability.swift in Sources */,
 			);
@@ -407,6 +543,7 @@
 		};
 		D989906B201878C700DAE4CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FE33344493940DEB81DA24E /* Pods-Square1Network.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -430,6 +567,7 @@
 		};
 		D989906C201878C700DAE4CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B5B5C0E6B6950E4A3875D03 /* Pods-Square1Network.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -452,6 +590,7 @@
 		};
 		D989906E201878C700DAE4CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9DC379E4CFD8507141DCCE6 /* Pods-Square1NetworkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -469,6 +608,7 @@
 		};
 		D989906F201878C700DAE4CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D5D431BC20FE6174215DE93 /* Pods-Square1NetworkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
