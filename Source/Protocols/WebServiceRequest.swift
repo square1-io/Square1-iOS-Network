@@ -26,7 +26,7 @@ public typealias HeaderItem = URLQueryItem
 public enum WebServiceResult<T> {
   case success(T)
   case successNoData
-  case failure(NSError)
+  case failure(NSError?)
 }
 
 // MARK: - WebResource

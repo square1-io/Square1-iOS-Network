@@ -10,17 +10,36 @@
 
 import Foundation
 
+public protocol JSONServiceError: Decodable {
+  var error: NSError? { get }
+}
+
+
 public protocol JSONServiceResponse: WebServiceResponse {
   init(jsonObject:Decodable)
 }
 
+
 public protocol JSONServiceRequest: WebServiceRequest where Task: URLSessionDataTask, Response: JSONServiceResponse {
-  func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) -> WebServiceResult<Response>
+  associatedtype JSONResponseType: Decodable
+  associatedtype JSONServiceErrorType: JSONServiceError
+  
+  var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
+  
+  func handleResponse(_ data: Data?,
+                      response: URLResponse?,
+                      error: NSError?) -> WebServiceResult<Response>
 }
 
+
 public extension JSONServiceRequest {
+
   var accept: MIMEType? { return .json }
   
+  var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
+    return .deferredToDate
+  }
+
   @discardableResult
   func executeInSession(_ session: URLSession? = URLSession.shared,
                         completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
@@ -35,5 +54,33 @@ public extension JSONServiceRequest {
     
     task.resume()
     return task
+  }
+  
+  func handleResponse(_ data: Data?,
+                      response: URLResponse?,
+                      error: NSError?) -> WebServiceResult<Response> {
+    if let error = error {
+      return .failure(error)
+    }
+    
+    guard let data = data else {
+      return .successNoData
+    }
+    
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = dateDecodingStrategy
+    
+    do {
+      let apiError = try decoder.decode(JSONServiceErrorType.self, from: data)
+      return .failure(apiError.error)
+    } catch {}
+    
+    do {
+      let json = try decoder.decode(JSONResponseType.self, from: data)
+      let response = Response(jsonObject: json)
+      return .success(response)
+    } catch let error as NSError {
+      return .failure(error)
+    }
   }
 }

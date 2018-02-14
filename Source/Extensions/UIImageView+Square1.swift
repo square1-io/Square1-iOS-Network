@@ -19,8 +19,22 @@ public extension UIImageView {
   ///   - url: url of the reote image.
   ///   - placeholder: placeholder `UIImage` to show while remote image is not present.
   ///   - completion: completion black with the returned image set on the image view.
-  public func setRemoteImage(_ url: String, placeholder: UIImage? = nil, completion: ((UIImage?) -> ())? = nil ) {
-    self.kf.setImage(with: URL(string:url)!,
+  public func setRemoteImage(_ url: String,
+                             placeholder: UIImage? = nil,
+                             resizeService: ImageResizeService? = nil,
+                             resizingTo size: CGSize? = nil,
+                             completion: ((UIImage?) -> ())? = nil ) {
+    var imageUrl: URL?
+    let resizeSize: CGSize = size ?? CGSize.zero
+    
+    if let resizeService = resizeService,
+      let resizeUrl = resizeService.resizedImageUrl(for: url, size: resizeSize) {
+      imageUrl = resizeUrl
+    } else {
+      imageUrl = URL(string:url)
+    }
+    
+    self.kf.setImage(with: imageUrl,
                      placeholder: placeholder,
                      options: nil,
                      progressBlock: nil) { (image, _, _, _) in
@@ -28,6 +42,5 @@ public extension UIImageView {
         completion?(image)
       }
     }
-    
   }
 }

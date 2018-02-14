@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		453718C720281C1B9BBBEB29 /* Pods_Square1NetworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABB85FEFCAD56006F8E7529 /* Pods_Square1NetworkTests.framework */; };
 		D1691BB8DB6A7317AC6FB8FF /* Pods_Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028F866153AEF087751863B /* Pods_Square1Network.framework */; };
+		D91CABC32034287400D818A6 /* ImageResizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CABC22034287400D818A6 /* ImageResizeService.swift */; };
 		D9239E95202880C600401215 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9239E94202880C600401215 /* Reachability.swift */; };
+		D951C206203484C300EECD74 /* JSONServiceEmptyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */; };
 		D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */; };
 		D9899060201878C700DAE4CC /* Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9899056201878C700DAE4CC /* Square1Network.framework */; };
 		D9899067201878C700DAE4CC /* Square1Network.h in Headers */ = {isa = PBXBuildFile; fileRef = D9899059201878C700DAE4CC /* Square1Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,7 +41,9 @@
 		8B5B5C0E6B6950E4A3875D03 /* Pods-Square1Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.release.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.release.xcconfig"; sourceTree = "<group>"; };
 		8D5D431BC20FE6174215DE93 /* Pods-Square1NetworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1NetworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FE33344493940DEB81DA24E /* Pods-Square1Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.debug.xcconfig"; sourceTree = "<group>"; };
+		D91CABC22034287400D818A6 /* ImageResizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizeService.swift; sourceTree = "<group>"; };
 		D9239E94202880C600401215 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONServiceEmptyError.swift; sourceTree = "<group>"; };
 		D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Square1.swift"; sourceTree = "<group>"; };
 		D9899056201878C700DAE4CC /* Square1Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Square1Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9899059201878C700DAE4CC /* Square1Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Square1Network.h; sourceTree = "<group>"; };
@@ -102,8 +106,17 @@
 			isa = PBXGroup;
 			children = (
 				D9239E94202880C600401215 /* Reachability.swift */,
+				D91CABC22034287400D818A6 /* ImageResizeService.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D951C2042034848700EECD74 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D956F8B72031BF50007015A9 /* Extensions */ = {
@@ -137,6 +150,7 @@
 		D9899058201878C700DAE4CC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D951C2042034848700EECD74 /* Model */,
 				D956F8B72031BF50007015A9 /* Extensions */,
 				D9239E93202880B200401215 /* Helpers */,
 				D994940B20188FAD00BD937D /* Protocols */,
@@ -314,10 +328,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Square1Tools/Square1Tools.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Square1Tools.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -397,10 +413,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D951C206203484C300EECD74 /* JSONServiceEmptyError.swift in Sources */,
 				D9899073201879AC00DAE4CC /* WebServiceRequest.swift in Sources */,
 				D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */,
 				D9899072201879AC00DAE4CC /* JSONServiceRequest.swift in Sources */,
 				D9239E95202880C600401215 /* Reachability.swift in Sources */,
+				D91CABC32034287400D818A6 /* ImageResizeService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +610,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9DC379E4CFD8507141DCCE6 /* Pods-Square1NetworkTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2X2SE3LG2B;
@@ -610,7 +627,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D5D431BC20FE6174215DE93 /* Pods-Square1NetworkTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2X2SE3LG2B;

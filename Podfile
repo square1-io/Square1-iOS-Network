@@ -4,6 +4,7 @@ inhibit_all_warnings!
 
 def pods
   pod 'Kingfisher'
+  pod 'Square1Tools'
 end
 
 target 'Square1Network' do
