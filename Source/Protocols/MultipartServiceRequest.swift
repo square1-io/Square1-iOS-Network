@@ -9,7 +9,7 @@
 import Foundation
 
 
-public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessionUploadTask {
+public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessionDataTask {
   var files: [FileUpload] { get }
   var params: [String: String] { get }
 }
@@ -45,6 +45,22 @@ public extension MultipartServiceRequest {
     return request
   }
   
+  @discardableResult
+  func executeInSession(_ session: URLSession = URLSession.shared,
+                        completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
+    let request = self.request as URLRequest
+    
+    let task = session.dataTask(with: request) { data, response, error in
+      DispatchQueue.main.async {
+        // TODO: EXECUTE completion
+      }
+    }
+    
+    task.resume()
+    return task
+  }
+  
+  // MARK: - Private
   fileprivate func data(for file: FileUpload) -> Data {
     let data = NSMutableData()
     
