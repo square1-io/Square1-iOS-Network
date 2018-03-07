@@ -12,7 +12,9 @@ import Foundation
 @testable import Square1Network
 
 struct SinglePostRequest: JSONServiceRequest {
-
+  
+  typealias JSONResponseType = Post
+  typealias JSONServiceErrorType = JSONServiceEmptyError
   typealias Response = SinglePostResponse
   
   var baseUrl = URL(string: "https://jsonplaceholder.typicode.com")!

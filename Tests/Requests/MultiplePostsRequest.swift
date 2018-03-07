@@ -12,7 +12,8 @@ import Foundation
 @testable import Square1Network
 
 struct MultiplePostRequest: JSONServiceRequest {
-  
+  typealias JSONResponseType = [Post]
+  typealias JSONServiceErrorType = JSONServiceEmptyError
   typealias Response = MultiplePostsResponse
   
   var baseUrl = URL(string: "https://jsonplaceholder.typicode.com")!
