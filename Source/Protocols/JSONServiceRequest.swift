@@ -53,11 +53,11 @@ public extension JSONServiceRequest {
   }
   
   @discardableResult
-  func executeInSession(_ session: URLSession = URLSession.shared,
+  func executeInSession(_ session: URLSession? = URLSession.shared,
                         completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
     let request = self.request as URLRequest
     
-    let task = session.dataTask(with: request) { data, response, error in
+    let task = session!.dataTask(with: request) { data, response, error in
       let result = self.handleResponse(data, response: response, error: error as NSError?)
       DispatchQueue.main.async {
         completion(result)
