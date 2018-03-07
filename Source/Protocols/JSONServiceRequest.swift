@@ -34,16 +34,28 @@ public protocol JSONServiceRequest: WebServiceRequest where Task: URLSessionData
 
 public extension JSONServiceRequest {
 
-  var accept: MIMEType? { return .json }
+  var accept: String? { return "application/json" }
   
   var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
     return .deferredToDate
   }
 
+  var request: NSMutableURLRequest {
+    let request = baseRequest
+    
+    // Request Body
+    if let requestBody = requestBody {
+      let data = try! JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted)
+      request.httpBody = data
+    }
+    
+    return request
+  }
+  
   @discardableResult
   func executeInSession(_ session: URLSession? = URLSession.shared,
                         completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
-    let request = createRequest() as URLRequest
+    let request = self.request as URLRequest
     
     let task = session!.dataTask(with: request) { data, response, error in
       let result = self.handleResponse(data, response: response, error: error as NSError?)

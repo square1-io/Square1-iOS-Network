@@ -17,10 +17,6 @@ public enum HTTPMethod : String {
   case DELETE
 }
 
-public enum MIMEType : String {
-  case json = "application/json"
-}
-
 public typealias HeaderItem = URLQueryItem
 
 public enum WebServiceResult<T> {
@@ -38,9 +34,11 @@ public protocol WebServiceRequest {
   var method: HTTPMethod { get }
   var path: [String] { get }
   var queryParams: [URLQueryItem] { get }
-  var accept: MIMEType? { get }
+  var accept: String? { get }
+  var contentType: String? { get }
   var headerParams: [HeaderItem] { get }
   var requestBody: AnyObject? { get }
+  var requestBodyStream: InputStream? { get }
   var taskID: String { get }
   
   @discardableResult
@@ -52,9 +50,11 @@ public extension WebServiceRequest {
   var method: HTTPMethod { return .GET }
   var path: [String] { return [String]() }
   var queryParams: [URLQueryItem] { return [URLQueryItem]() }
-  var accept: MIMEType? { return nil }
+  var accept: String? { return nil }
+  var contentType: String? { return nil }
   var headerParams: [HeaderItem] { return [HeaderItem]() }
   var requestBody: AnyObject? { return nil }
+  var requestBodyStream: InputStream? { return nil }
   var taskID: String { return String(describing: type(of: self))}
 }
 
@@ -63,7 +63,7 @@ public extension WebServiceRequest {
   
   var requestDescription: String { return String(describing: type(of: self)) }
   
-  func createRequest() -> NSMutableURLRequest {
+  var baseRequest: NSMutableURLRequest {
     var url = baseUrl
     
     // Path
@@ -86,22 +86,27 @@ public extension WebServiceRequest {
     
     // Accept MIME Type
     if let accept =  accept {
-      mutableUrlRequest.setValue(accept.rawValue, forHTTPHeaderField: "Accept")
+      mutableUrlRequest.setValue(accept, forHTTPHeaderField: "Accept")
     }
     
     // Header Parameters
     for headerParam in headerParams {
-       mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
+      mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
     }
     
-    // Request Body
-    if let requestBody = requestBody {
-      let data = try! JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted)
-      mutableUrlRequest.httpBody = data
+    // Content Type
+    if let contentType = contentType {
+      mutableUrlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+    }
+    
+    // Request Body Stream
+    if let requestBodyStream = requestBodyStream {
+      mutableUrlRequest.httpBodyStream = requestBodyStream
     }
     
     return mutableUrlRequest
   }
+  
 
 }
 

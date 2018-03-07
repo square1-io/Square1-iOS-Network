@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author       = "Square1"
   s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/square1-io/Square1-iOS-Network.git", :tag => s.version }
-  s.source_files  = "Source/**/*.swift"
+  s.source_files  = "Source","Source/**/*.swift"
 
   s.dependency "Kingfisher"
   s.dependency "Square1Tools"

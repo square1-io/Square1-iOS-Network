@@ -11,6 +11,8 @@
 		D1691BB8DB6A7317AC6FB8FF /* Pods_Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028F866153AEF087751863B /* Pods_Square1Network.framework */; };
 		D91CABC32034287400D818A6 /* ImageResizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CABC22034287400D818A6 /* ImageResizeService.swift */; };
 		D9239E95202880C600401215 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9239E94202880C600401215 /* Reachability.swift */; };
+		D944AC38205012AF00028EFF /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944AC37205012AF00028EFF /* FileUpload.swift */; };
+		D944AC3A205014A300028EFF /* NSMutableData+Square1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944AC39205014A300028EFF /* NSMutableData+Square1.swift */; };
 		D951C206203484C300EECD74 /* JSONServiceEmptyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */; };
 		D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */; };
 		D9899060201878C700DAE4CC /* Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9899056201878C700DAE4CC /* Square1Network.framework */; };
@@ -23,6 +25,7 @@
 		D989908020187EC100DAE4CC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D989907F20187EC100DAE4CC /* Post.swift */; };
 		D989908420187FEE00DAE4CC /* MultiplePostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D989908320187FEE00DAE4CC /* MultiplePostsResponse.swift */; };
 		D9899086201880E300DAE4CC /* MultiplePostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9899085201880E300DAE4CC /* MultiplePostsRequest.swift */; };
+		D9CFD1622050087D00A23058 /* MultipartServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CFD1612050087D00A23058 /* MultipartServiceRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,8 @@
 		8FE33344493940DEB81DA24E /* Pods-Square1Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.debug.xcconfig"; sourceTree = "<group>"; };
 		D91CABC22034287400D818A6 /* ImageResizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizeService.swift; sourceTree = "<group>"; };
 		D9239E94202880C600401215 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D944AC37205012AF00028EFF /* FileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
+		D944AC39205014A300028EFF /* NSMutableData+Square1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableData+Square1.swift"; sourceTree = "<group>"; };
 		D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONServiceEmptyError.swift; sourceTree = "<group>"; };
 		D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Square1.swift"; sourceTree = "<group>"; };
 		D9899056201878C700DAE4CC /* Square1Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Square1Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +63,7 @@
 		D989907F20187EC100DAE4CC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D989908320187FEE00DAE4CC /* MultiplePostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplePostsResponse.swift; sourceTree = "<group>"; };
 		D9899085201880E300DAE4CC /* MultiplePostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplePostsRequest.swift; sourceTree = "<group>"; };
+		D9CFD1612050087D00A23058 /* MultipartServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartServiceRequest.swift; sourceTree = "<group>"; };
 		D9DC379E4CFD8507141DCCE6 /* Pods-Square1NetworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1NetworkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */,
+				D944AC37205012AF00028EFF /* FileUpload.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */,
+				D944AC39205014A300028EFF /* NSMutableData+Square1.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,6 +211,7 @@
 			children = (
 				D9899070201879AC00DAE4CC /* JSONServiceRequest.swift */,
 				D9899071201879AC00DAE4CC /* WebServiceRequest.swift */,
+				D9CFD1612050087D00A23058 /* MultipartServiceRequest.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -413,12 +422,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D944AC38205012AF00028EFF /* FileUpload.swift in Sources */,
 				D951C206203484C300EECD74 /* JSONServiceEmptyError.swift in Sources */,
+				D9CFD1622050087D00A23058 /* MultipartServiceRequest.swift in Sources */,
 				D9899073201879AC00DAE4CC /* WebServiceRequest.swift in Sources */,
 				D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */,
 				D9899072201879AC00DAE4CC /* JSONServiceRequest.swift in Sources */,
 				D9239E95202880C600401215 /* Reachability.swift in Sources */,
 				D91CABC32034287400D818A6 /* ImageResizeService.swift in Sources */,
+				D944AC3A205014A300028EFF /* NSMutableData+Square1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
