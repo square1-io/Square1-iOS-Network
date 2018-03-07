@@ -39,6 +39,7 @@ public extension MultipartServiceRequest {
       body.append(data(for: key, and: value))
     }
     
+    request.httpBody = body as Data
     return request
   }
   
@@ -56,7 +57,6 @@ public extension MultipartServiceRequest {
     
     data.append(file.data)
     data.append("\r\n")
-    data.append(file.data)
     
     return data as Data
   }
