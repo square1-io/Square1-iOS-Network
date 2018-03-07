@@ -39,6 +39,8 @@ public extension MultipartServiceRequest {
       body.append(data(for: key, and: value))
     }
     
+    body.append("--\(boundary)--")
+    
     request.httpBody = body as Data
     return request
   }
