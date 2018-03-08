@@ -20,7 +20,7 @@ public extension MultipartServiceRequest {
   var method: HTTPMethod { return .POST }
     
   fileprivate var boundary: String = {
-    return "Boundary-\(UUID().uuidString)"
+    return "boundary-d481cbe95f0e7a59ec7f93e6ede5dd05e3291a3c"
   }
   
   var contentType: String? {
