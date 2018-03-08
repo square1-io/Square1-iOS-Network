@@ -18,7 +18,7 @@ public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessio
 public extension MultipartServiceRequest {
 
   fileprivate var boundary: String {
-    return "Boundary-\(UUID().uuidString)"
+    return "square1.ios"
   }
   
   var contentType: String? {
@@ -27,7 +27,6 @@ public extension MultipartServiceRequest {
   
   var request: NSMutableURLRequest {
     let request = baseRequest
-    
     let body = NSMutableData()
     
     // Request Body
@@ -36,7 +35,7 @@ public extension MultipartServiceRequest {
     }
     
     for (key, value) in params {
-      body.append(data(for: key, and: value))
+      body.append(data(for: key, value: value))
     }
     
     body.append("--\(boundary)--")
@@ -79,7 +78,7 @@ public extension MultipartServiceRequest {
     return data as Data
   }
   
-  fileprivate func data(for key: String, and value: String ) -> Data {
+  fileprivate func data(for key: String, value: String) -> Data {
     let data = NSMutableData()
     
     data.append("--\(boundary)\r\n")
