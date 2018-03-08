@@ -22,11 +22,17 @@ public typealias HeaderItem = URLQueryItem
 public enum WebServiceResult<T> {
   case success(T)
   case successNoData
-  case failure(NSError?)
+  case failure(Error?)
 }
+
+enum ServiceError: Error {
+    case invalidData
+}
+
 
 // MARK: - WebResource
 public protocol WebServiceRequest {
+ 
   associatedtype Task: URLSessionTask
   associatedtype Response: WebServiceResponse
   
@@ -40,9 +46,15 @@ public protocol WebServiceRequest {
   var requestBody: AnyObject? { get }
   var requestBodyStream: InputStream? { get }
   var taskID: String { get }
+    
+  /// add any other custom values to the request
+  ///
+  /// - Parameter request: the request to modify
+ func prepareRequest(request:NSMutableURLRequest)
   
   @discardableResult
   func executeInSession(_ session: URLSession? , completion: @escaping (_ response: WebServiceResult<Response>) -> Void ) -> Task?
+    func parseReceivedData(data: Data) throws -> WebServiceResult<Response>
 }
 
 // MARK: Default values
@@ -104,10 +116,46 @@ public extension WebServiceRequest {
       mutableUrlRequest.httpBodyStream = requestBodyStream
     }
     
+    prepareRequest(request: mutableUrlRequest)
+    
     return mutableUrlRequest
   }
   
+    
+    
+  @discardableResult
+  func executeInSession(_ session: URLSession? = URLSession.shared,
+                          completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
+        
+        let request = self.baseRequest as URLRequest
+        
+        let task = session!.dataTask(with: request) { data, httpResponse, error in
+            let response = self.handleResponse(data, response: httpResponse, error: error)
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+        
+        task.resume()
+        return task
+    }
 
+    fileprivate func handleResponse(_ data: Data?, response: URLResponse?, error: Error?) -> WebServiceResult<Response> {
+        if let error = error {
+            return .failure(error)
+        }
+        
+        guard let data = data else {
+            return .successNoData
+        }
+        
+        do {
+            let response = try self.parseReceivedData(data: data)
+            return response
+        } catch let error as Error {
+            return .failure(error)
+        }
+    }
 }
 
 // MARK: Web Service Response

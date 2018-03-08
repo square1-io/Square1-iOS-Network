@@ -12,6 +12,14 @@ import Foundation
 @testable import Square1Network
 
 struct SinglePostRequest: JSONServiceRequest {
+    
+    func parseReceivedData(data: Data) throws -> WebServiceResult<SinglePostResponse> {
+              let decoder = JSONDecoder()
+              let json = try decoder.decode(Post.self, from: data)
+              let response = SinglePostResponse(jsonObject: json)
+              return .success(response)
+    }
+    
   
   typealias JSONResponseType = Post
   typealias JSONServiceErrorType = JSONServiceEmptyError
@@ -21,24 +29,24 @@ struct SinglePostRequest: JSONServiceRequest {
   var path = ["posts", "1"]
   var headerParams = (field:"Content-Type", value:"application/json")
   
-  func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) -> WebServiceResult<SinglePostResponse> {
-    if let error = error {
-      return .failure(error)
-    }
-    
-    guard let data = data else {
-      return .successNoData
-    }
-    
-    do {
-      let decoder = JSONDecoder()
-      let json = try decoder.decode(Post.self, from: data)
-      let response = SinglePostResponse(jsonObject: json)
-      return .success(response)
-    } catch let error as NSError {
-      return .failure(error)
-    }
-  }
+//  func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) -> WebServiceResult<SinglePostResponse> {
+//    if let error = error {
+//      return .failure(error)
+//    }
+//    
+//    guard let data = data else {
+//      return .successNoData
+//    }
+//    
+//    do {
+//      let decoder = JSONDecoder()
+//      let json = try decoder.decode(Post.self, from: data)
+//      let response = SinglePostResponse(jsonObject: json)
+//      return .success(response)
+//    } catch let error as NSError {
+//      return .failure(error)
+//    }
+//  }
 }
 
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		453718C720281C1B9BBBEB29 /* Pods_Square1NetworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABB85FEFCAD56006F8E7529 /* Pods_Square1NetworkTests.framework */; };
+		62A855DD205055830046F145 /* MultipartToiletRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A855DC205055830046F145 /* MultipartToiletRequest.swift */; };
+		62A855DF205055D50046F145 /* MultipartServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A855DE205055D50046F145 /* MultipartServiceResponse.swift */; };
 		D1691BB8DB6A7317AC6FB8FF /* Pods_Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028F866153AEF087751863B /* Pods_Square1Network.framework */; };
 		D91CABC32034287400D818A6 /* ImageResizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CABC22034287400D818A6 /* ImageResizeService.swift */; };
 		D9239E95202880C600401215 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9239E94202880C600401215 /* Reachability.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62A855DC205055830046F145 /* MultipartToiletRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartToiletRequest.swift; sourceTree = "<group>"; };
+		62A855DE205055D50046F145 /* MultipartServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartServiceResponse.swift; sourceTree = "<group>"; };
 		6ABB85FEFCAD56006F8E7529 /* Pods_Square1NetworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Square1NetworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8028F866153AEF087751863B /* Pods_Square1Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Square1Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5B5C0E6B6950E4A3875D03 /* Pods-Square1Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.release.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 			children = (
 				D989907920187C7300DAE4CC /* SinglePostResponse.swift */,
 				D989908320187FEE00DAE4CC /* MultiplePostsResponse.swift */,
+				62A855DE205055D50046F145 /* MultipartServiceResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 			children = (
 				D989907C20187D1300DAE4CC /* SinglePostRequest.swift */,
 				D9899085201880E300DAE4CC /* MultiplePostsRequest.swift */,
+				62A855DC205055830046F145 /* MultipartToiletRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -441,6 +447,8 @@
 				D989907620187A1E00DAE4CC /* JSONResourceTests.swift in Sources */,
 				D9899086201880E300DAE4CC /* MultiplePostsRequest.swift in Sources */,
 				D989907A20187C7300DAE4CC /* SinglePostResponse.swift in Sources */,
+				62A855DF205055D50046F145 /* MultipartServiceResponse.swift in Sources */,
+				62A855DD205055830046F145 /* MultipartToiletRequest.swift in Sources */,
 				D989907D20187D1300DAE4CC /* SinglePostRequest.swift in Sources */,
 				D989908020187EC100DAE4CC /* Post.swift in Sources */,
 				D989908420187FEE00DAE4CC /* MultiplePostsResponse.swift in Sources */,

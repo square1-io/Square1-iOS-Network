@@ -60,5 +60,28 @@ class JSONResourceTests: XCTestCase {
     
     waitForExpectations(timeout: 5.0)
   }
+
+    func testMultipartRequest() {
+        
+        let request = MultipartToiletRequest()
+        let expect = expectation(description: "END")
+        request.executeInSession(session) { (result) in
+            
+            switch (result) {
+                
+            case .success(let multipartResponse):
+                XCTAssertTrue(multipartResponse.valid())
+                break
+                
+            default:
+                XCTFail()
+                break
+            }
+            
+            expect.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5.0)
+    }
     
 }

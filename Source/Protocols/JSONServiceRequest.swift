@@ -21,14 +21,13 @@ public protocol JSONServiceResponse: WebServiceResponse {
 
 
 public protocol JSONServiceRequest: WebServiceRequest where Task: URLSessionDataTask, Response: JSONServiceResponse {
+  
   associatedtype JSONResponseType: Decodable
   associatedtype JSONServiceErrorType: JSONServiceError
   
   var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
   
-  func handleResponse(_ data: Data?,
-                      response: URLResponse?,
-                      error: NSError?) -> WebServiceResult<Response>
+ 
 }
 
 
@@ -40,59 +39,33 @@ public extension JSONServiceRequest {
     return .deferredToDate
   }
 
-  var request: NSMutableURLRequest {
-    let request = baseRequest
+  func prepareRequest(request:NSMutableURLRequest){
     
     // Request Body
     if let requestBody = requestBody {
       let data = try! JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted)
       request.httpBody = data
     }
-    
-    return request
+
   }
   
-  @discardableResult
-  func executeInSession(_ session: URLSession? = URLSession.shared,
-                        completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
-    let request = self.request as URLRequest
-    
-    let task = session!.dataTask(with: request) { data, response, error in
-      let result = self.handleResponse(data, response: response, error: error as NSError?)
-      DispatchQueue.main.async {
-        completion(result)
-      }
-    }
-    
-    task.resume()
-    return task
-  }
-  
-  func handleResponse(_ data: Data?,
-                      response: URLResponse?,
-                      error: NSError?) -> WebServiceResult<Response> {
-    if let error = error {
-      return .failure(error)
-    }
-    
-    guard let data = data else {
-      return .successNoData
-    }
+  func parseReceivedData(data: Data) throws -> WebServiceResult<Response> {
     
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = dateDecodingStrategy
     
     do {
-      let apiError = try decoder.decode(JSONServiceErrorType.self, from: data)
-      return .failure(apiError.error)
+        let apiError = try decoder.decode(JSONServiceErrorType.self, from: data)
+        return .failure(apiError.error)
     } catch {}
     
     do {
-      let json = try decoder.decode(JSONResponseType.self, from: data)
-      let response = Response(jsonObject: json)
-      return .success(response)
+        let json = try decoder.decode(JSONResponseType.self, from: data)
+        let response = Response(jsonObject: json)
+        return .success(response)
     } catch let error as NSError {
-      return .failure(error)
+        return .failure(error)
     }
-  }
+    }
+  
 }

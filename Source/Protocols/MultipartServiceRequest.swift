@@ -9,7 +9,7 @@
 import Foundation
 
 
-public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessionDataTask {
+public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessionDataTask, Response: WebServiceResponse {
   var files: [FileUpload] { get }
   var params: [String: String] { get }
 }
@@ -17,7 +17,9 @@ public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessio
 
 public extension MultipartServiceRequest {
 
-  fileprivate var boundary: String {
+  var method: HTTPMethod { return .POST }
+    
+  fileprivate var boundary: String = {
     return "Boundary-\(UUID().uuidString)"
   }
   
@@ -25,9 +27,9 @@ public extension MultipartServiceRequest {
     return "multipart/form-data; boundary=\(boundary)"
   }
   
-  var request: NSMutableURLRequest {
-    let request = baseRequest
     
+  func prepareRequest(request:NSMutableURLRequest){
+
     let body = NSMutableData()
     
     // Request Body
@@ -39,26 +41,17 @@ public extension MultipartServiceRequest {
       body.append(data(for: key, and: value))
     }
     
-    body.append("--\(boundary)--")
+    if body.length > 0 {
+        body.append("--\(boundary)--")
+        request.httpBody = body as Data
+    }
+
+    let stringData:String =  String(data: body as Data, encoding: String.Encoding.utf8)!
+   print(stringData)
     
-    request.httpBody = body as Data
-    return request
   }
   
-  @discardableResult
-  func executeInSession(_ session: URLSession? = URLSession.shared,
-                        completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
-    let request = self.request as URLRequest
-    
-    let task = session!.dataTask(with: request) { data, response, error in
-      DispatchQueue.main.async {
-        // TODO: EXECUTE completion
-      }
-    }
-    
-    task.resume()
-    return task
-  }
+
   
   // MARK: - Private
   fileprivate func data(for file: FileUpload) -> Data {

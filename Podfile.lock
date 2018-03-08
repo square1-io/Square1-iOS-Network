@@ -1,19 +1,15 @@
 PODS:
   - Kingfisher (4.6.1)
-  - Square1Tools (1.0.4)
+  - Square1Tools (1.0.5)
 
 DEPENDENCIES:
   - Kingfisher
-  - Square1Tools (from `../Square1Tools`)
-
-EXTERNAL SOURCES:
-  Square1Tools:
-    :path: ../Square1Tools
+  - Square1Tools
 
 SPEC CHECKSUMS:
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
-  Square1Tools: de8e069832806c9d542a8834d62246ebf1af3213
+  Square1Tools: 2fd86ceb397b1e208fe3d147d46ced54f95fd84c
 
-PODFILE CHECKSUM: 5edce736065a61850723d4ba4c12600f7f62f84b
+PODFILE CHECKSUM: 34496cf0275d47541a16d2ef0bd7b0bdb21403cb
 
 COCOAPODS: 1.4.0
