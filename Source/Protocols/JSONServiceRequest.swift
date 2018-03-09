@@ -39,16 +39,7 @@ public extension JSONServiceRequest {
     return .deferredToDate
   }
 
-  func prepareRequest(request:NSMutableURLRequest){
-    
-    // Request Body
-    if let requestBody = requestBody {
-      let data = try! JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted)
-      request.httpBody = data
-    }
-
-  }
-  
+ 
   func parseReceivedData(data: Data) throws -> WebServiceResult<Response> {
     
     let decoder = JSONDecoder()

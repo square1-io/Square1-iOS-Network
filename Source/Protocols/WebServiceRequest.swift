@@ -43,14 +43,10 @@ public protocol WebServiceRequest {
   var accept: String? { get }
   var contentType: String? { get }
   var headerParams: [HeaderItem] { get }
-  var requestBody: AnyObject? { get }
+  var requestBody: Data? { get }
   var requestBodyStream: InputStream? { get }
   var taskID: String { get }
-    
-  /// add any other custom values to the request
-  ///
-  /// - Parameter request: the request to modify
- func prepareRequest(request:NSMutableURLRequest)
+
   
   @discardableResult
   func executeInSession(_ session: URLSession? , completion: @escaping (_ response: WebServiceResult<Response>) -> Void ) -> Task?
@@ -65,7 +61,7 @@ public extension WebServiceRequest {
   var accept: String? { return nil }
   var contentType: String? { return nil }
   var headerParams: [HeaderItem] { return [HeaderItem]() }
-  var requestBody: AnyObject? { return nil }
+  var requestBody: Data? { return nil }
   var requestBodyStream: InputStream? { return nil }
   var taskID: String { return String(describing: type(of: self))}
 }
@@ -75,51 +71,56 @@ public extension WebServiceRequest {
   
   var requestDescription: String { return String(describing: type(of: self)) }
   
-  var baseRequest: NSMutableURLRequest {
-    var url = baseUrl
-    
-    // Path
-    for component in path {
-      url.appendPathComponent(component)
+    var request: NSMutableURLRequest {
+        
+        var url = baseUrl
+        
+        // Path
+        for component in path {
+            url.appendPathComponent(component)
+        }
+        
+        // Query Params
+        if !queryParams.isEmpty {
+            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+            urlComponents.queryItems = queryParams.map {
+                URLQueryItem(name: $0.name, value: $0.value)
+            }
+            url = urlComponents.url!
+        }
+        
+        // Create Request
+        let mutableUrlRequest = NSMutableURLRequest(url: url)
+        mutableUrlRequest.httpMethod = method.rawValue
+        
+        // Accept MIME Type
+        if let accept =  accept {
+            mutableUrlRequest.setValue(accept, forHTTPHeaderField: "Accept")
+        }
+        
+        // Header Parameters
+        for headerParam in headerParams {
+            mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
+        }
+        
+        // Content Type
+        if let contentType = contentType {
+            mutableUrlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        }
+        
+        // Request Body
+        if let requestBody = requestBody {
+            mutableUrlRequest.httpBody = requestBody
+        }
+        
+        // Request Body Stream
+        if let requestBodyStream = requestBodyStream {
+            mutableUrlRequest.httpBodyStream = requestBodyStream
+        }
+        
+        
+        return mutableUrlRequest
     }
-    
-    // Query Params
-    if !queryParams.isEmpty {
-      var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-      urlComponents.queryItems = queryParams.map {
-        URLQueryItem(name: $0.name, value: $0.value)
-      }
-      url = urlComponents.url!
-    }
-    
-    // Create Request
-    let mutableUrlRequest = NSMutableURLRequest(url: url)
-    mutableUrlRequest.httpMethod = method.rawValue
-    
-    // Accept MIME Type
-    if let accept =  accept {
-      mutableUrlRequest.setValue(accept, forHTTPHeaderField: "Accept")
-    }
-    
-    // Header Parameters
-    for headerParam in headerParams {
-      mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
-    }
-    
-    // Content Type
-    if let contentType = contentType {
-      mutableUrlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
-    }
-    
-    // Request Body Stream
-    if let requestBodyStream = requestBodyStream {
-      mutableUrlRequest.httpBodyStream = requestBodyStream
-    }
-    
-    prepareRequest(request: mutableUrlRequest)
-    
-    return mutableUrlRequest
-  }
   
     
     
@@ -127,7 +128,7 @@ public extension WebServiceRequest {
   func executeInSession(_ session: URLSession? = URLSession.shared,
                           completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
         
-        let request = self.baseRequest as URLRequest
+        let request = self.request as URLRequest
         
         let task = session!.dataTask(with: request) { data, httpResponse, error in
             let response = self.handleResponse(data, response: httpResponse, error: error)
