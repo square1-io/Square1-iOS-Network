@@ -9,6 +9,7 @@
  */
 
 import Foundation
+import Square1Tools
 
 public enum HTTPMethod : String {
   case GET
@@ -71,92 +72,93 @@ public extension WebServiceRequest {
   
   var requestDescription: String { return String(describing: type(of: self)) }
   
-    var request: NSMutableURLRequest {
-        
-        var url = baseUrl
-        
-        // Path
-        for component in path {
-            url.appendPathComponent(component)
-        }
-        
-        // Query Params
-        if !queryParams.isEmpty {
-            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-            urlComponents.queryItems = queryParams.map {
-                URLQueryItem(name: $0.name, value: $0.value)
-            }
-            url = urlComponents.url!
-        }
-        
-        // Create Request
-        let mutableUrlRequest = NSMutableURLRequest(url: url)
-        mutableUrlRequest.httpMethod = method.rawValue
-        
-        // Accept MIME Type
-        if let accept =  accept {
-            mutableUrlRequest.setValue(accept, forHTTPHeaderField: "Accept")
-        }
-        
-        // Header Parameters
-        for headerParam in headerParams {
-            mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
-        }
-        
-        // Content Type
-        if let contentType = contentType {
-            mutableUrlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
-        }
-        
-        // Request Body
-        if let requestBody = requestBody {
-            mutableUrlRequest.httpBody = requestBody
-        }
-        
-        // Request Body Stream
-        if let requestBodyStream = requestBodyStream {
-            mutableUrlRequest.httpBodyStream = requestBodyStream
-        }
-        
-        
-        return mutableUrlRequest
+  var request: NSMutableURLRequest {
+    
+    var url = baseUrl
+  
+    // Path
+    for component in path {
+        url.appendPathComponent(component)
     }
+  
+    // Query Params
+    if !queryParams.isEmpty {
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        urlComponents.queryItems = queryParams.map {
+            URLQueryItem(name: $0.name, value: $0.value)
+        }
+        url = urlComponents.url!
+    }
+  
+    // Create Request
+    let mutableUrlRequest = NSMutableURLRequest(url: url)
+    mutableUrlRequest.httpMethod = method.rawValue
+  
+    // Accept MIME Type
+    if let accept =  accept {
+        mutableUrlRequest.setValue(accept, forHTTPHeaderField: "Accept")
+    }
+  
+    // Header Parameters
+    for headerParam in headerParams {
+        mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
+    }
+  
+    // Content Type
+    if let contentType = contentType {
+        mutableUrlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+    }
+  
+    // Request Body
+    if let requestBody = requestBody {
+        mutableUrlRequest.httpBody = requestBody
+    }
+  
+    // Request Body Stream
+    if let requestBodyStream = requestBodyStream {
+        mutableUrlRequest.httpBodyStream = requestBodyStream
+    }
+  
+    Log("Request URL is: \(mutableUrlRequest.url!)")
+  
+    return mutableUrlRequest
+  }
   
     
     
   @discardableResult
   func executeInSession(_ session: URLSession? = URLSession.shared,
-                          completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
-        
-        let request = self.request as URLRequest
-        
-        let task = session!.dataTask(with: request) { data, httpResponse, error in
-            let response = self.handleResponse(data, response: httpResponse, error: error)
-            DispatchQueue.main.async {
-                completion(response)
-            }
+                        completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
+    
+    let request = self.request as URLRequest
+
+    let task = session!.dataTask(with: request) { data, httpResponse, error in
+        let response = self.handleResponse(data, response: httpResponse, error: error)
+        DispatchQueue.main.async {
+            completion(response)
         }
-        
-        task.resume()
-        return task
     }
 
-    fileprivate func handleResponse(_ data: Data?, response: URLResponse?, error: Error?) -> WebServiceResult<Response> {
-        if let error = error {
-            return .failure(error)
-        }
-        
-        guard let data = data else {
-            return .successNoData
-        }
-        
-        do {
-            let response = try self.parseReceivedData(data: data)
-            return response
-        } catch let error as Error {
-            return .failure(error)
-        }
+    task.resume()
+    return task
+  }
+
+  fileprivate func handleResponse(_ data: Data?, response: URLResponse?, error: Error?) -> WebServiceResult<Response> {
+    if let error = error {
+        return .failure(error)
     }
+    
+    guard let data = data else {
+        return .successNoData
+    }
+    
+    do {
+        let response = try self.parseReceivedData(data: data)
+        return response
+    } catch let error as Error {
+        return .failure(error)
+    }
+  }
 }
 
 // MARK: Web Service Response

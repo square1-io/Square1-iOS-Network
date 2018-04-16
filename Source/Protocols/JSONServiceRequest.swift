@@ -19,15 +19,15 @@ public protocol JSONServiceResponse: WebServiceResponse {
   init(jsonObject:Decodable)
 }
 
-
 public protocol JSONServiceRequest: WebServiceRequest where Task: URLSessionDataTask, Response: JSONServiceResponse {
   
   associatedtype JSONResponseType: Decodable
   associatedtype JSONServiceErrorType: JSONServiceError
   
   var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
+  var usesResponseDynamicParsing: Bool { get }
   
- 
+  func responseDynamicParsing(for data: Data) -> (WebServiceResult<Response>)?
 }
 
 
@@ -38,8 +38,15 @@ public extension JSONServiceRequest {
   var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
     return .deferredToDate
   }
+  
+  var usesResponseDynamicParsing: Bool {
+    return false
+  }
+  
+  func responseDynamicParsing(for data: Data) -> (WebServiceResult<Response>)? {
+    return nil
+  }
 
- 
   func parseReceivedData(data: Data) throws -> WebServiceResult<Response> {
     
     let decoder = JSONDecoder()
@@ -49,6 +56,13 @@ public extension JSONServiceRequest {
         let apiError = try decoder.decode(JSONServiceErrorType.self, from: data)
         return .failure(apiError.error)
     } catch {}
+    
+    if usesResponseDynamicParsing {
+      guard let response = responseDynamicParsing(for: data) else {
+        fatalError("Response dynamic parsing requires a dynamic parsing block")
+      }
+      return response
+    }
     
     do {
         let json = try decoder.decode(JSONResponseType.self, from: data)
