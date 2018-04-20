@@ -1,18 +1,15 @@
 PODS:
-  - GoogleReporter (1.2)
   - Kingfisher (4.6.1)
   - Square1Tools (1.0.5)
 
 DEPENDENCIES:
-  - GoogleReporter
   - Kingfisher
   - Square1Tools
 
 SPEC CHECKSUMS:
-  GoogleReporter: 43bf406a8072da0c8626d0d7cf9438854c690d90
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   Square1Tools: 2fd86ceb397b1e208fe3d147d46ced54f95fd84c
 
-PODFILE CHECKSUM: ff6261a45d262b27d135cc624fc62559258a70ef
+PODFILE CHECKSUM: b9e5a09d7003174664c09883b896b2209538597a
 
 COCOAPODS: 1.4.0

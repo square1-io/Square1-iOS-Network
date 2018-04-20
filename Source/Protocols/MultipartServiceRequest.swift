@@ -50,9 +50,7 @@ public extension MultipartServiceRequest {
    print(stringData)
     
   }
-  
 
-  
   // MARK: - Private
   fileprivate func data(for file: FileUpload) -> Data {
     let data = NSMutableData()

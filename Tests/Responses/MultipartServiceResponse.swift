@@ -13,19 +13,13 @@ import Foundation
 
 class MultipartServiceResponse: WebServiceResponse {
 
-    public let message:String
-    
-    required init(stringData: String) {
-        self.message = stringData
-    }
-    
-    public func valid() -> Bool {
-        
-        if let message:String = message as? String {
-            return "hello this is a message".elementsEqual(message)
-        }
-        
-        return false
-        
-    }
+  public let message:String
+  
+  required init(stringData: String) {
+    self.message = stringData
+  }
+  
+  public func valid() -> Bool {
+    return "hello this is a message".elementsEqual(message)
+  }
 }

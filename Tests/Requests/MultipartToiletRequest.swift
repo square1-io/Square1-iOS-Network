@@ -13,7 +13,7 @@ class MultipartToiletRequest: MultipartServiceRequest {
     
     func parseReceivedData(data: Data) throws -> WebServiceResult<MultipartServiceResponse> {
 
-        if let stringData:String =  String(data:data, encoding: String.Encoding.utf8) as? String {
+        if let stringData = String(data:data, encoding: String.Encoding.utf8) {
             let response = MultipartServiceResponse(stringData: stringData)
             return .success(response)
         }
