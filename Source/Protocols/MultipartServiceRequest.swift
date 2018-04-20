@@ -9,7 +9,7 @@
 import Foundation
 
 
-public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessionDataTask, Response: WebServiceResponse {
+public protocol MultipartServiceRequest: WebServiceRequest where Task: URLSessionDataTask {
   var files: [FileUpload] { get }
   var params: [String: String] { get }
 }

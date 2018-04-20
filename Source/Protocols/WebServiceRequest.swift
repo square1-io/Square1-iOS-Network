@@ -155,7 +155,7 @@ public extension WebServiceRequest {
     do {
         let response = try self.parseReceivedData(data: data)
         return response
-    } catch let error as Error {
+    } catch let error as NSError {
         return .failure(error)
     }
   }
