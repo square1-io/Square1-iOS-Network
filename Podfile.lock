@@ -1,15 +1,20 @@
 PODS:
-  - Kingfisher (4.6.1)
-  - Square1Tools (1.0.5)
+  - Kingfisher (4.8.1)
+  - Square1Tools (1.2.1)
 
 DEPENDENCIES:
   - Kingfisher
   - Square1Tools
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Kingfisher
+    - Square1Tools
+
 SPEC CHECKSUMS:
-  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
-  Square1Tools: 2fd86ceb397b1e208fe3d147d46ced54f95fd84c
+  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  Square1Tools: eaa8ee2dd630b12b8d4ad03d041626f7daf7b346
 
 PODFILE CHECKSUM: b9e5a09d7003174664c09883b896b2209538597a
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

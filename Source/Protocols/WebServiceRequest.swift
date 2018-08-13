@@ -11,6 +11,10 @@
 import Foundation
 import Square1Tools
 
+public enum NetworkError: Error {
+  case emptyResponse
+}
+
 public enum HTTPMethod : String {
   case GET
   case POST
@@ -22,7 +26,6 @@ public typealias HeaderItem = URLQueryItem
 
 public enum WebServiceResult<T> {
   case success(T)
-  case successNoData
   case failure(Error?)
 }
 
@@ -149,7 +152,7 @@ public extension WebServiceRequest {
     }
     
     guard let data = data else {
-        return .successNoData
+        return .failure(NetworkError.emptyResponse)
     }
     
     do {
