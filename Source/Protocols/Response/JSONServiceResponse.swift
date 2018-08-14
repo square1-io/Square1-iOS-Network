@@ -9,17 +9,46 @@
  */
 
 import Foundation
-@testable import Square1Network
 
-final class SinglePostResponse: DecodableJSONServiceResponse {
+// MARK: - JSONServiceResponse
+public protocol JSONServiceResponse: WebServiceResponse {
+  var json: [String: Any] { get set }
+}
 
-  // MARK: - Properties
-  private(set) var post: Post?
+extension JSONServiceResponse {
+  public init(data: Data) throws {
+    self.init()
+    json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
+  }
+}
+
+// MARK: - DecodableJSONServiceResponse
+public protocol DecodableJSONServiceResponse: WebServiceResponse {
+  associatedtype JSONType: Decodable
   
-  // MARK: - DecodableJSONServiceResponse
-  func processParsed(decodable: Post) {
-    self.post = decodable
+  var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
+  
+  func processParsed(decodable: JSONType)
+}
+
+public extension DecodableJSONServiceResponse {
+
+  var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
+    return .deferredToDate
   }
   
-  typealias JSONType = Post
+  public init(data: Data) throws {
+    self.init()
+    
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = dateDecodingStrategy
+    
+    let json = try decoder.decode(JSONType.self, from: data)
+    processParsed(decodable: json)
+  }
+}
+
+// MARK: - JSONServiceError
+public protocol JSONServiceError: Decodable {
+  var error: NSError? { get }
 }

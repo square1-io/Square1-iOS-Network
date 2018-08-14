@@ -11,17 +11,15 @@
 import Foundation
 @testable import Square1Network
 
-struct SinglePostRequest: JSONServiceRequest {
+struct SinglePostRequest: DecodableJSONServiceRequest {
     
-    func parseReceivedData(data: Data) throws -> WebServiceResult<SinglePostResponse> {
-              let decoder = JSONDecoder()
-              let json = try decoder.decode(Post.self, from: data)
-              let response = SinglePostResponse(jsonObject: json)
-              return .success(response)
-    }
-    
+//  func parseReceivedData(data: Data) throws -> WebServiceResult<SinglePostResponse> {
+//            let decoder = JSONDecoder()
+//            let json = try decoder.decode(Post.self, from: data)
+//            let response = SinglePostResponse(jsonObject: json)
+//            return .success(response)
+//  }
   
-  typealias JSONResponseType = Post
   typealias JSONServiceErrorType = JSONServiceEmptyError
   typealias Response = SinglePostResponse
   

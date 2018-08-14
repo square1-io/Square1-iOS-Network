@@ -11,11 +11,7 @@
 import Foundation
 import Square1Tools
 
-public enum NetworkError: Error {
-  case emptyResponse
-}
-
-public enum HTTPMethod : String {
+public enum HTTPMethod: String {
   case GET
   case POST
   case PUT
@@ -30,13 +26,12 @@ public enum WebServiceResult<T> {
 }
 
 enum ServiceError: Error {
-    case invalidData
+  case invalidData
 }
 
-
-// MARK: - WebResource
+// MARK: - WebServiceRequest
 public protocol WebServiceRequest {
- 
+  
   associatedtype Task: URLSessionTask
   associatedtype Response: WebServiceResponse
   
@@ -49,15 +44,16 @@ public protocol WebServiceRequest {
   var headerParams: [HeaderItem] { get }
   var requestBody: Data? { get }
   var requestBodyStream: InputStream? { get }
-  var taskID: String { get }
-
   
-  @discardableResult
-  func executeInSession(_ session: URLSession? , completion: @escaping (_ response: WebServiceResult<Response>) -> Void ) -> Task?
-    func parseReceivedData(data: Data) throws -> WebServiceResult<Response>
+  func execute(in session: URLSession?,
+               completion: @escaping (_ response: WebServiceResult<Response>) -> ()) -> Task?
+  
+  func handle(_ data: Data?,
+              response: URLResponse?,
+              error: Error?) -> WebServiceResult<Response>
 }
 
-// MARK: Default values
+// MARK: - Default values
 public extension WebServiceRequest {
   var method: HTTPMethod { return .GET }
   var path: [String] { return [String]() }
@@ -67,102 +63,96 @@ public extension WebServiceRequest {
   var headerParams: [HeaderItem] { return [HeaderItem]() }
   var requestBody: Data? { return nil }
   var requestBodyStream: InputStream? { return nil }
-  var taskID: String { return String(describing: type(of: self))}
 }
 
-// MARK: Request
+// MARK: - Request
 public extension WebServiceRequest {
-  
-  var requestDescription: String { return String(describing: type(of: self)) }
   
   var request: NSMutableURLRequest {
     
     var url = baseUrl
-  
+    
     // Path
     for component in path {
-        url.appendPathComponent(component)
+      url.appendPathComponent(component)
     }
-  
+    
     // Query Params
     if !queryParams.isEmpty {
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        urlComponents.queryItems = queryParams.map {
-            URLQueryItem(name: $0.name, value: $0.value)
-        }
-        url = urlComponents.url!
+      var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+      urlComponents.queryItems = queryParams.map {
+        URLQueryItem(name: $0.name, value: $0.value)
+      }
+      url = urlComponents.url!
     }
-  
+    
     // Create Request
     let mutableUrlRequest = NSMutableURLRequest(url: url)
     mutableUrlRequest.httpMethod = method.rawValue
-  
+    
     // Accept MIME Type
     if let accept =  accept {
-        mutableUrlRequest.setValue(accept, forHTTPHeaderField: "Accept")
+      mutableUrlRequest.setValue(accept, forHTTPHeaderField: "Accept")
     }
-  
+    
     // Header Parameters
     for headerParam in headerParams {
-        mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
+      mutableUrlRequest.setValue(headerParam.value, forHTTPHeaderField: headerParam.name)
     }
-  
+    
     // Content Type
     if let contentType = contentType {
-        mutableUrlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+      mutableUrlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
     }
-  
+    
     // Request Body
     if let requestBody = requestBody {
-        mutableUrlRequest.httpBody = requestBody
+      mutableUrlRequest.httpBody = requestBody
     }
-  
+    
     // Request Body Stream
     if let requestBodyStream = requestBodyStream {
-        mutableUrlRequest.httpBodyStream = requestBodyStream
+      mutableUrlRequest.httpBodyStream = requestBodyStream
     }
-  
+    
     Log("Request URL is: \(mutableUrlRequest.url!)")
-  
+    
     return mutableUrlRequest
   }
   
-    
-    
   @discardableResult
-  func executeInSession(_ session: URLSession? = URLSession.shared,
-                        completion: @escaping (WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
+  func execute(in session: URLSession? = URLSession.shared,
+               completion: @escaping (_ response: WebServiceResult<Response>) -> ()) -> URLSessionDataTask? {
     
     let request = self.request as URLRequest
-
-    let task = session!.dataTask(with: request) { data, httpResponse, error in
-        let response = self.handleResponse(data, response: httpResponse, error: error)
-        DispatchQueue.main.async {
-            completion(response)
-        }
+    let task = session!.dataTask(with: request) { data, urlResponse, error in
+      let result = self.handle(data, response: urlResponse, error: error)
+      DispatchQueue.main.async {
+        completion(result)
+      }
     }
-
+    
     task.resume()
     return task
   }
-
-  fileprivate func handleResponse(_ data: Data?, response: URLResponse?, error: Error?) -> WebServiceResult<Response> {
+  
+  public func handle(_ data: Data?,
+                     response: URLResponse?,
+                     error: Error?) -> WebServiceResult<Response> {
     if let error = error {
-        return .failure(error)
+      return .failure(error)
     }
     
     guard let data = data else {
-        return .failure(NetworkError.emptyResponse)
+      return .failure(ServiceError.invalidData)
     }
     
     do {
-        let response = try self.parseReceivedData(data: data)
-        return response
-    } catch let error as NSError {
-        return .failure(error)
+      let response = try Response(data: data)
+      return .success(response)
+    } catch let error {
+      return .failure(error)
     }
   }
 }
 
-// MARK: Web Service Response
-public protocol WebServiceResponse {}

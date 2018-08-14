@@ -11,6 +11,8 @@
 		62A855DD205055830046F145 /* MultipartToiletRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A855DC205055830046F145 /* MultipartToiletRequest.swift */; };
 		62A855DF205055D50046F145 /* MultipartServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A855DE205055D50046F145 /* MultipartServiceResponse.swift */; };
 		D1691BB8DB6A7317AC6FB8FF /* Pods_Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028F866153AEF087751863B /* Pods_Square1Network.framework */; };
+		D90BFD132122C4980045F0A7 /* WebServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BFD122122C4980045F0A7 /* WebServiceResponse.swift */; };
+		D90BFD152122C5340045F0A7 /* JSONServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BFD142122C5340045F0A7 /* JSONServiceResponse.swift */; };
 		D91CABC32034287400D818A6 /* ImageResizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CABC22034287400D818A6 /* ImageResizeService.swift */; };
 		D9239E95202880C600401215 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9239E94202880C600401215 /* Reachability.swift */; };
 		D944AC38205012AF00028EFF /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944AC37205012AF00028EFF /* FileUpload.swift */; };
@@ -48,6 +50,8 @@
 		8B5B5C0E6B6950E4A3875D03 /* Pods-Square1Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.release.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.release.xcconfig"; sourceTree = "<group>"; };
 		8D5D431BC20FE6174215DE93 /* Pods-Square1NetworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1NetworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Square1NetworkTests/Pods-Square1NetworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FE33344493940DEB81DA24E /* Pods-Square1Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.debug.xcconfig"; sourceTree = "<group>"; };
+		D90BFD122122C4980045F0A7 /* WebServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceResponse.swift; sourceTree = "<group>"; };
+		D90BFD142122C5340045F0A7 /* JSONServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONServiceResponse.swift; sourceTree = "<group>"; };
 		D91CABC22034287400D818A6 /* ImageResizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizeService.swift; sourceTree = "<group>"; };
 		D9239E94202880C600401215 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D944AC37205012AF00028EFF /* FileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
@@ -110,6 +114,25 @@
 				6ABB85FEFCAD56006F8E7529 /* Pods_Square1NetworkTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D90BFD102122C4750045F0A7 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				D9CFD1612050087D00A23058 /* MultipartServiceRequest.swift */,
+				D9899070201879AC00DAE4CC /* JSONServiceRequest.swift */,
+				D9899071201879AC00DAE4CC /* WebServiceRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		D90BFD112122C4850045F0A7 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				D90BFD122122C4980045F0A7 /* WebServiceResponse.swift */,
+				D90BFD142122C5340045F0A7 /* JSONServiceResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		D9239E93202880B200401215 /* Helpers */ = {
@@ -215,9 +238,8 @@
 		D994940B20188FAD00BD937D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D9899070201879AC00DAE4CC /* JSONServiceRequest.swift */,
-				D9899071201879AC00DAE4CC /* WebServiceRequest.swift */,
-				D9CFD1612050087D00A23058 /* MultipartServiceRequest.swift */,
+				D90BFD112122C4850045F0A7 /* Response */,
+				D90BFD102122C4750045F0A7 /* Request */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -397,7 +419,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D944AC38205012AF00028EFF /* FileUpload.swift in Sources */,
+				D90BFD132122C4980045F0A7 /* WebServiceResponse.swift in Sources */,
 				D951C206203484C300EECD74 /* JSONServiceEmptyError.swift in Sources */,
+				D90BFD152122C5340045F0A7 /* JSONServiceResponse.swift in Sources */,
 				D9CFD1622050087D00A23058 /* MultipartServiceRequest.swift in Sources */,
 				D9899073201879AC00DAE4CC /* WebServiceRequest.swift in Sources */,
 				D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */,

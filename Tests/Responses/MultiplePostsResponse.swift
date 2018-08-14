@@ -11,12 +11,15 @@
 import Foundation
 @testable import Square1Network
 
-struct MultiplePostsResponse: JSONServiceResponse {
+final class MultiplePostsResponse: DecodableJSONServiceResponse {
+
+  // MARK: - Properties
+  private(set) var posts: [Post] = []
   
-  let posts: [Post]
-  
-  init(jsonObject: Decodable) {
-    let posts = jsonObject as! [Post]
-    self.posts = posts
+  // MARK: - DecodableJSONServiceResponse
+  func processParsed(decodable: [Post]) {
+    self.posts = decodable
   }
+  
+  typealias JSONType = [Post]
 }

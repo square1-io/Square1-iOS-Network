@@ -9,17 +9,13 @@
  */
 
 import Foundation
-@testable import Square1Network
 
-final class SinglePostResponse: DecodableJSONServiceResponse {
+import Foundation
 
-  // MARK: - Properties
-  private(set) var post: Post?
-  
-  // MARK: - DecodableJSONServiceResponse
-  func processParsed(decodable: Post) {
-    self.post = decodable
-  }
-  
-  typealias JSONType = Post
+public protocol WebServiceResponse {
+  init()
+  init(data: Data) throws
 }
+
+extension WebServiceResponse {}
+

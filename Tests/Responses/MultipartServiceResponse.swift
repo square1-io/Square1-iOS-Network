@@ -11,15 +11,16 @@ import Foundation
 @testable import Square1Network
 
 
-class MultipartServiceResponse: WebServiceResponse {
-
-  public let message:String
-  
-  required init(stringData: String) {
-    self.message = stringData
-  }
-  
-  public func valid() -> Bool {
-    return "hello this is a message".elementsEqual(message)
-  }
-}
+//class MultipartServiceResponse: WebServiceResponse {
+//
+//
+//  public let message:String
+//  
+//  required init(stringData: String) {
+//    self.message = stringData
+//  }
+//  
+//  public func valid() -> Bool {
+//    return "hello this is a message".elementsEqual(message)
+//  }
+//}

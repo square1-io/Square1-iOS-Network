@@ -11,19 +11,18 @@
 import Foundation
 @testable import Square1Network
 
-struct MultiplePostRequest: JSONServiceRequest {
+struct MultiplePostRequest: DecodableJSONServiceRequest {
     
-    func parseReceivedData(data: Data) throws -> WebServiceResult<MultiplePostsResponse> {
-        
-        let decoder = JSONDecoder()
-        let json = try decoder.decode([Post].self, from: data)
-        let response = MultiplePostsResponse(jsonObject: json)
-        return .success(response)
-        
-    }
-    
-    
-  typealias JSONResponseType = [Post]
+//  func parseReceivedData(data: Data) throws -> WebServiceResult<MultiplePostsResponse> {
+//
+//    let decoder = JSONDecoder()
+//    let json = try decoder.decode([Post].self, from: data)
+//
+//    let response = MultiplePostsResponse(jsonObject: json)
+//    return .success(response)
+//
+//  }
+
   typealias JSONServiceErrorType = JSONServiceEmptyError
   typealias Response = MultiplePostsResponse
   
