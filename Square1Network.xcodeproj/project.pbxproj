@@ -13,11 +13,11 @@
 		D1691BB8DB6A7317AC6FB8FF /* Pods_Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028F866153AEF087751863B /* Pods_Square1Network.framework */; };
 		D90BFD132122C4980045F0A7 /* WebServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BFD122122C4980045F0A7 /* WebServiceResponse.swift */; };
 		D90BFD152122C5340045F0A7 /* JSONServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BFD142122C5340045F0A7 /* JSONServiceResponse.swift */; };
+		D90BFD182122D37D0045F0A7 /* JSONServiceTestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BFD162122D3570045F0A7 /* JSONServiceTestError.swift */; };
 		D91CABC32034287400D818A6 /* ImageResizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91CABC22034287400D818A6 /* ImageResizeService.swift */; };
 		D9239E95202880C600401215 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9239E94202880C600401215 /* Reachability.swift */; };
 		D944AC38205012AF00028EFF /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944AC37205012AF00028EFF /* FileUpload.swift */; };
 		D944AC3A205014A300028EFF /* NSMutableData+Square1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944AC39205014A300028EFF /* NSMutableData+Square1.swift */; };
-		D951C206203484C300EECD74 /* JSONServiceEmptyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */; };
 		D956F8B92031BF61007015A9 /* UIImageView+Square1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */; };
 		D9899060201878C700DAE4CC /* Square1Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9899056201878C700DAE4CC /* Square1Network.framework */; };
 		D9899067201878C700DAE4CC /* Square1Network.h in Headers */ = {isa = PBXBuildFile; fileRef = D9899059201878C700DAE4CC /* Square1Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,11 +52,11 @@
 		8FE33344493940DEB81DA24E /* Pods-Square1Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Square1Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Square1Network/Pods-Square1Network.debug.xcconfig"; sourceTree = "<group>"; };
 		D90BFD122122C4980045F0A7 /* WebServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceResponse.swift; sourceTree = "<group>"; };
 		D90BFD142122C5340045F0A7 /* JSONServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONServiceResponse.swift; sourceTree = "<group>"; };
+		D90BFD162122D3570045F0A7 /* JSONServiceTestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONServiceTestError.swift; sourceTree = "<group>"; };
 		D91CABC22034287400D818A6 /* ImageResizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizeService.swift; sourceTree = "<group>"; };
 		D9239E94202880C600401215 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D944AC37205012AF00028EFF /* FileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
 		D944AC39205014A300028EFF /* NSMutableData+Square1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableData+Square1.swift"; sourceTree = "<group>"; };
-		D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONServiceEmptyError.swift; sourceTree = "<group>"; };
 		D956F8B82031BF61007015A9 /* UIImageView+Square1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Square1.swift"; sourceTree = "<group>"; };
 		D9899056201878C700DAE4CC /* Square1Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Square1Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9899059201878C700DAE4CC /* Square1Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Square1Network.h; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 		D951C2042034848700EECD74 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D951C205203484C300EECD74 /* JSONServiceEmptyError.swift */,
 				D944AC37205012AF00028EFF /* FileUpload.swift */,
 			);
 			path = Model;
@@ -231,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				D989907F20187EC100DAE4CC /* Post.swift */,
+				D90BFD162122D3570045F0A7 /* JSONServiceTestError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -420,7 +420,6 @@
 			files = (
 				D944AC38205012AF00028EFF /* FileUpload.swift in Sources */,
 				D90BFD132122C4980045F0A7 /* WebServiceResponse.swift in Sources */,
-				D951C206203484C300EECD74 /* JSONServiceEmptyError.swift in Sources */,
 				D90BFD152122C5340045F0A7 /* JSONServiceResponse.swift in Sources */,
 				D9CFD1622050087D00A23058 /* MultipartServiceRequest.swift in Sources */,
 				D9899073201879AC00DAE4CC /* WebServiceRequest.swift in Sources */,
@@ -440,6 +439,7 @@
 				D9899086201880E300DAE4CC /* MultiplePostsRequest.swift in Sources */,
 				D989907A20187C7300DAE4CC /* SinglePostResponse.swift in Sources */,
 				62A855DF205055D50046F145 /* MultipartServiceResponse.swift in Sources */,
+				D90BFD182122D37D0045F0A7 /* JSONServiceTestError.swift in Sources */,
 				62A855DD205055830046F145 /* MultipartToiletRequest.swift in Sources */,
 				D989907D20187D1300DAE4CC /* SinglePostRequest.swift in Sources */,
 				D989908020187EC100DAE4CC /* Post.swift in Sources */,
